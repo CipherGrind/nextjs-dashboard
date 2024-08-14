@@ -14,7 +14,7 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
+    console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
@@ -141,6 +141,7 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
+
   try {
     const data = await sql<InvoiceForm>`
       SELECT
@@ -158,6 +159,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    console.log(invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
@@ -167,6 +169,10 @@ export async function fetchInvoiceById(id: string) {
 
 export async function fetchCustomers() {
   try {
+
+  console.log('Fetching customers data...');
+  // await new Promise((resolve) => setTimeout(resolve, 4000));
+
     const data = await sql<CustomerField>`
       SELECT
         id,
@@ -176,6 +182,7 @@ export async function fetchCustomers() {
     `;
 
     const customers = data.rows;
+    // console.log('Data fetch completed after 4 seconds.');
     return customers;
   } catch (err) {
     console.error('Database Error:', err);
@@ -184,7 +191,11 @@ export async function fetchCustomers() {
 }
 
 export async function fetchFilteredCustomers(query: string) {
+
   try {
+    console.log('Fetching customers data...');
+    // await new Promise((resolve) => setTimeout(resolve, 4000));
+
     const data = await sql<CustomersTableType>`
 		SELECT
 		  customers.id,
@@ -209,6 +220,7 @@ export async function fetchFilteredCustomers(query: string) {
       total_paid: formatCurrency(customer.total_paid),
     }));
 
+    // console.log('Data fetch completed after 4 seconds.');
     return customers;
   } catch (err) {
     console.error('Database Error:', err);
