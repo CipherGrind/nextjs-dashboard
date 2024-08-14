@@ -2,6 +2,9 @@
 
 This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
 
+Link to app, hosted on Vercel:
+https://nextjs-dashboard-taupe-delta-95.vercel.app/
+
 To login, use the following credentials:
 Username= user@nextmail.com
 Password= 123456
